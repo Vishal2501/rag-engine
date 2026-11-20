@@ -1,0 +1,252 @@
+AI ENGINEERING LEARNING DATASET
+A practical knowledge base for experimenting with text chunking, embeddings, retrieval, and Retrieval-Augmented Generation (RAG)
+
+Version: 1.0
+Purpose: Learning and testing a small RAG pipeline
+Note: This is an educational dataset. It is intentionally organized into sections with headings, paragraphs, lists, definitions, examples, and related concepts. That variety makes it useful for comparing fixed-size, overlapping, recursive, and structure-aware chunking.
+
+======================================================================
+1. INTRODUCTION TO ARTIFICIAL INTELLIGENCE
+======================================================================
+
+Artificial Intelligence (AI) is a broad field of computer science concerned with building systems that can perform tasks that normally require human-like capabilities. These tasks may include recognizing patterns, understanding language, making predictions, planning actions, and solving problems. An AI system does not need to think in the same way as a person. It needs to produce useful behavior for a defined task.
+
+AI is an umbrella term rather than one specific algorithm. A rule-based program that follows carefully written instructions can be considered an AI system in some contexts. A machine-learning model that learns patterns from examples is another kind of AI system. Modern generative AI systems use large neural networks to produce text, images, audio, or other content from an input prompt.
+
+A useful distinction is between narrow AI and general AI. Narrow AI is designed for a limited task or family of tasks, such as classifying email as spam, recommending a film, detecting defects in a manufactured product, or answering questions about a collection of documents. General AI is a hypothetical capability to learn and perform a wide range of intellectual tasks at a human-like level. Most deployed AI applications today are examples of narrow AI.
+
+An AI application usually contains more than a model. It may include input validation, data preparation, a model or external model API, business rules, storage, monitoring, and a user interface. For example, an AI-powered support assistant may receive a question, identify the customer, retrieve relevant policy documents, ask a language model to draft an answer, check the answer against business rules, and log the interaction.
+
+AI projects should begin with a clearly defined problem. "Use AI" is not a useful objective by itself. A better objective is "classify incoming support tickets into one of six categories with at least 90 percent precision" or "answer questions from approved product documentation and provide source references." A measurable objective helps a team choose an approach and evaluate whether it works.
+
+Common AI application areas include computer vision, speech recognition, natural language processing, recommendation systems, forecasting, robotics, and generative AI. These areas overlap. A voice assistant, for example, may combine speech recognition, language understanding, retrieval, and speech generation.
+
+======================================================================
+2. MACHINE LEARNING FUNDAMENTALS
+======================================================================
+
+Machine Learning (ML) is a subfield of AI in which a computer system learns patterns from data instead of relying only on hand-written rules. A machine-learning workflow typically includes collecting data, cleaning and transforming it, selecting features or representations, choosing a model, training the model, evaluating it, and deploying it.
+
+In supervised learning, the training dataset contains examples with known target labels or values. A classification model predicts a category, such as whether a transaction is fraudulent. A regression model predicts a numeric value, such as the expected delivery time for an order. The model learns a relationship between input features and the known target.
+
+In unsupervised learning, examples do not have target labels. The algorithm tries to identify structure in the data. Clustering can group similar customers, documents, or products. Dimensionality reduction can represent high-dimensional data using fewer dimensions while preserving useful structure. These methods can help explore data, but the resulting groups still need interpretation.
+
+Reinforcement learning is based on an agent taking actions in an environment and receiving rewards or penalties. The agent learns a policy that aims to maximize long-term reward. It is used in areas such as robotics, game-playing, and some forms of decision optimization. Reinforcement learning differs from ordinary supervised learning because feedback is often delayed and depends on a sequence of actions.
+
+A dataset is commonly divided into training, validation, and test sets. The training set is used to fit model parameters. The validation set helps compare configurations and tune hyperparameters. The test set is held back until final evaluation to estimate performance on unseen examples. Repeatedly tuning against the test set leaks information from the test data into the development process and can produce an overly optimistic estimate.
+
+Overfitting occurs when a model learns details or noise in its training examples that do not generalize to new data. A model may achieve very high training accuracy but much lower test accuracy. Underfitting occurs when a model is too simple, poorly configured, or insufficiently trained to capture the relevant patterns. A good model balances fit to training data with generalization to unseen data.
+
+Data leakage occurs when information that would not be available at prediction time accidentally enters training or evaluation. For example, if a feature is calculated using the future outcome, the model may appear excellent during testing but fail in production. Leakage can also happen when near-duplicate records are split across training and test sets.
+
+A feature is an input variable used by a model. A label is the target the model is trying to predict in supervised learning. A parameter is a value learned during training, while a hyperparameter is a configuration selected outside the ordinary parameter-learning process. Examples of hyperparameters include learning rate, tree depth, batch size, and number of training epochs.
+
+Machine learning is useful when patterns are difficult to express as explicit rules and representative data is available. It is not automatically the best solution. A simple rule, database query, or conventional software workflow may be cheaper, easier to explain, and more reliable for a stable problem.
+
+======================================================================
+3. DEEP LEARNING AND NEURAL NETWORKS
+======================================================================
+
+Deep Learning is a branch of machine learning that uses neural networks with multiple layers to learn increasingly complex representations. A neural network consists of connected computational units often called neurons. Each unit combines inputs using weights and a bias, applies an activation function, and passes the result to later units.
+
+A basic feed-forward neural network sends information from an input layer through one or more hidden layers to an output layer. During training, the network compares its prediction with the target using a loss function. Backpropagation calculates how the loss changes with respect to the network's parameters. An optimization algorithm, such as stochastic gradient descent or Adam, updates the parameters to reduce the loss.
+
+An epoch is one complete pass through the training dataset. A batch is a subset of training examples processed together. Batch size affects memory use and the behavior of optimization. The learning rate controls the size of parameter updates. If the learning rate is too high, training may become unstable; if it is too low, training may progress very slowly.
+
+Convolutional Neural Networks (CNNs) are commonly associated with image processing. Convolutional filters detect local patterns such as edges, textures, and shapes. Deeper layers can combine these local patterns into more complex visual features. CNNs have also been used for audio and other structured signals.
+
+Recurrent Neural Networks (RNNs) were designed to process sequences by carrying information from earlier steps to later steps. Long Short-Term Memory networks (LSTMs) and Gated Recurrent Units (GRUs) were developed to improve the handling of longer dependencies. Recurrent architectures have been used for text, time series, and speech tasks.
+
+The Transformer architecture uses attention mechanisms to let a model weigh relationships between different positions in a sequence. Self-attention allows each token representation to incorporate information from other tokens. Transformers can be trained efficiently on large datasets and have become central to modern language models.
+
+Deep learning often requires substantial data and compute. It can learn powerful representations, but it may be difficult to interpret, expensive to train, and sensitive to data quality. A successful deep-learning project still requires careful evaluation, monitoring, and an understanding of the task.
+
+======================================================================
+4. NATURAL LANGUAGE PROCESSING
+======================================================================
+
+Natural Language Processing (NLP) is the area of AI concerned with working with human language. NLP tasks include text classification, sentiment analysis, named-entity recognition, machine translation, summarization, question answering, information extraction, and conversational systems.
+
+Text preprocessing converts raw text into a representation suitable for a task. Common operations include normalizing whitespace, handling punctuation, converting case when appropriate, removing unwanted markup, and detecting language. Preprocessing choices depend on the model. Aggressive cleaning can remove important information such as code symbols, product identifiers, or punctuation that changes meaning.
+
+Tokenization divides text into smaller units called tokens. A token may be a word, part of a word, punctuation, or another symbol. Modern language models commonly use subword tokenization, which can represent uncommon words as sequences of more familiar pieces. A token is not always equal to a word or a character. Therefore, a 500-token passage and a 500-word passage can have very different lengths.
+
+Stemming reduces words to a rough root form, often by removing endings. Lemmatization maps words to dictionary base forms using linguistic information. For example, "running" may be reduced to "run." These methods can be useful in traditional information retrieval, but they are not always necessary for modern embedding-based retrieval.
+
+A document is a unit of information that can be stored and retrieved. It may be a web page, PDF, support article, product manual, email, or database record. A document can contain metadata such as title, author, source URL, creation date, access permissions, and section heading. Metadata is valuable because retrieval can use it for filtering, ranking, and displaying citations.
+
+A sentence contains a proposition or thought, but meaning can depend on surrounding sentences. Consider the sentence "It was introduced two years later." Without earlier context, the referent of "it" is unclear. Chunking systems should try to preserve enough context for a retrieved passage to remain understandable.
+
+Natural language is ambiguous. The word "Java" can refer to a programming language, an island, or coffee in informal conversation. A retrieval system should use the question and the surrounding document context to identify the intended meaning. Keyword matching alone may return documents that share a word but discuss a different topic.
+
+======================================================================
+5. LARGE LANGUAGE MODELS
+======================================================================
+
+A Large Language Model (LLM) is a neural network trained on large collections of text and other data to model language patterns. Given an input sequence, a language model estimates likely next tokens. By generating one token after another, it can produce paragraphs, code, summaries, and answers.
+
+Many modern LLMs are based on the Transformer architecture. During pretraining, the model learns broad statistical patterns from a large corpus. Additional stages may include supervised fine-tuning, preference optimization, or other alignment techniques to make the model more useful for conversational tasks. The exact training process differs across models and providers.
+
+A prompt is the input supplied to a model. It may include system instructions, a user question, examples, retrieved context, and formatting requirements. Prompt design can influence the response, but it does not guarantee correctness. Clear instructions, relevant context, and explicit limits can reduce some errors.
+
+The context window is the amount of input and output a model can process in one request. It is measured in tokens, not pages. A large context window does not mean every supplied passage will receive equal attention or that the model will reason perfectly over all of it. Irrelevant context can increase cost and make answers less focused.
+
+Temperature is a generation setting that influences the randomness of token selection. Lower values generally make output more predictable, while higher values can produce more varied responses. Temperature does not measure factual accuracy. A low-temperature answer can still be wrong if the prompt or source material is wrong.
+
+An LLM can hallucinate: it may generate a plausible-sounding statement that is unsupported or false. Hallucination risk is especially important in applications involving policies, finance, law, health, or operational decisions. A system should not treat fluent language as proof of correctness.
+
+LLMs may have a knowledge cutoff or may lack access to current private information. Retrieval can provide external context at request time. However, retrieval only helps when the right information exists, is indexed correctly, is retrieved successfully, and is interpreted accurately by the model.
+
+======================================================================
+6. TEXT EMBEDDINGS AND VECTOR REPRESENTATIONS
+======================================================================
+
+An embedding is a numeric vector that represents an item such as a word, sentence, paragraph, image, or audio segment. Text embedding models are trained so that texts with related meanings often have vectors that are close under a chosen similarity measure. The vector is a representation, not a complete explanation of the text.
+
+For example, the sentences "How can I reset my password?" and "I forgot my login password; how do I change it?" use different words but express similar intent. A good semantic embedding model should place their vectors relatively close together. In contrast, "How do I prune a rose bush?" should normally be farther away.
+
+Embedding dimensions are the number of numeric values in a vector. A model may produce vectors with hundreds or thousands of dimensions. Higher dimensionality does not automatically mean better retrieval. Model quality, training data, domain fit, and evaluation matter more than dimension count alone.
+
+Cosine similarity measures the cosine of the angle between two non-zero vectors. It is commonly used to compare embedding direction. A value closer to 1 indicates that vectors point in similar directions, a value near 0 indicates little directional similarity, and a value near -1 indicates opposite directions. The practical range and interpretation depend on the embedding model and normalization.
+
+The cosine similarity formula is:
+
+cosine_similarity(A, B) = (A dot B) / (||A|| * ||B||)
+
+The dot product multiplies corresponding vector values and sums the results. The norm represents vector length. If vectors are normalized to unit length, cosine similarity is equal to their dot product. Some systems use dot product or Euclidean distance instead, so score direction and scale must be checked before setting a threshold.
+
+An embedding model should generally be used consistently for documents and queries. If document vectors are generated with one model and query vectors with an incompatible model, the vectors may not occupy a comparable space. When an embedding model changes, the document collection usually needs to be re-embedded.
+
+Semantic similarity is not identical to relevance. Two passages can discuss the same broad topic while only one answers the question. For example, a question about how to configure a learning rate may retrieve a passage about neural networks generally. The passage is topically related but may not contain the requested configuration guidance.
+
+Embedding quality should be evaluated with representative questions and known relevant passages. A small evaluation set can reveal whether the model handles abbreviations, technical terminology, paraphrases, spelling mistakes, and domain-specific language.
+
+======================================================================
+7. CHUNKING DOCUMENTS
+======================================================================
+
+Chunking is the process of splitting a large document into smaller pieces before embedding and indexing it. Many embedding models have input limits, and retrieving a whole book or long manual may return too much irrelevant information. Smaller chunks can make retrieval more focused and allow the system to pass only selected passages to an LLM.
+
+Chunk size is the length of each chunk. It may be measured in characters, words, or tokens. Character-based splitters are simple, but character counts do not correspond exactly to model tokens. Token-based chunking can better match model limits, although it may require a tokenizer.
+
+Very small chunks can lose context. A chunk containing only "It was released in 2019" may be impossible to interpret without the preceding paragraph. Small chunks can also fragment definitions, examples, or procedures across boundaries. This may reduce retrieval quality even if the embedding is technically valid.
+
+Very large chunks can contain several unrelated ideas. A query may retrieve a large passage because one sentence is relevant, while the remaining text adds noise. Large chunks also consume more context-window space and can make it harder for a language model to identify the exact supporting statement.
+
+Chunk overlap means that neighboring chunks share some text. For example, with a chunk size of 500 characters and overlap of 100 characters, the next chunk begins 400 characters after the previous chunk's start. Overlap can preserve information near boundaries and reduce the chance that a definition is separated from its explanation. Too much overlap creates redundant chunks, increases storage, and may cause repeated passages to dominate retrieval results.
+
+Fixed-size chunking splits text at regular intervals. It is easy to implement and useful as a baseline. However, it may split in the middle of a sentence, list item, or heading. A fixed-size splitter should ideally avoid breaking words and can be configured with overlap.
+
+Recursive character chunking tries a sequence of separators, commonly paragraph breaks, line breaks, spaces, and finally individual characters. It first attempts to preserve larger text units and only splits them further when a unit exceeds the target size. This often produces more natural chunks than cutting at arbitrary character positions.
+
+Structure-aware chunking uses the organization of the source. For Markdown, it may split by headings and then by paragraphs. For HTML, it may use page sections. For code, it may split by classes and functions. For PDFs, it may use headings, pages, and layout information. Structure-aware chunking can preserve meaningful boundaries but depends on reliable document parsing.
+
+Semantic chunking groups sentences according to changes in meaning. It may embed sentences and identify where semantic similarity between neighboring sentences drops. This can create coherent topic-based chunks, but it is more computationally expensive and depends on embedding quality and tuning.
+
+A practical chunking experiment should hold the source document, embedding model, retrieval method, and test questions constant while changing one chunking setting at a time. Compare fixed chunk sizes such as 200, 500, and 1000 characters, then test overlaps such as 0, 50, and 100 characters. Record the retrieved passages and evaluation metrics.
+
+Chunk metadata should be retained. Useful fields include document ID, source filename, page number, heading, chunk index, and source URL. Metadata helps display citations and trace a generated answer back to its origin. It also allows filtering, such as retrieving only from a particular product manual or document version.
+
+======================================================================
+8. VECTOR DATABASES AND INDEXING
+======================================================================
+
+A vector database or vector index stores embedding vectors and supports nearest-neighbor search. Instead of comparing a query with every document manually, an index can organize vectors to make retrieval faster. Some systems also store text and metadata alongside vectors; others keep the original text in a separate document store.
+
+FAISS is a library for efficient similarity search and clustering of dense vectors. It can be used locally and is popular for prototypes and learning projects. FAISS provides different index types with trade-offs between speed, memory, and search accuracy. A simple flat index can perform exact search, while approximate indexes can search large collections more quickly.
+
+Pinecone, Weaviate, Qdrant, and Milvus are examples of vector database products. They provide capabilities such as persistence, metadata filtering, scaling, and service APIs. The right choice depends on the project requirements, deployment environment, data size, latency needs, and operational constraints.
+
+An index is a data structure that makes search more efficient. Exact nearest-neighbor search checks all vectors and returns the true closest matches according to the selected metric. Approximate nearest-neighbor search trades some accuracy for speed. Approximate search should be evaluated because a faster result is not useful if it repeatedly misses the relevant passage.
+
+Metadata filtering narrows the candidate set before or during vector search. For example, a support assistant may filter by product version or language. Access-control filtering is especially important: a user should not retrieve documents they are not authorized to see. Security filtering must be enforced by the retrieval system, not merely requested in a prompt.
+
+When a document changes, its old chunks and vectors may need to be deleted and replaced. A robust indexing pipeline should track document versions and avoid leaving stale chunks behind. It should also be repeatable so that rebuilding the index produces a predictable result.
+
+======================================================================
+9. RETRIEVAL-AUGMENTED GENERATION
+======================================================================
+
+Retrieval-Augmented Generation (RAG) is an architecture that combines information retrieval with a generative model. Instead of asking an LLM to answer only from its internal learned parameters, a RAG system retrieves relevant external information and includes it in the prompt. The model then generates an answer grounded, ideally, in that retrieved context.
+
+A basic RAG pipeline has two main phases: ingestion and question answering. During ingestion, the application loads source documents, extracts text, splits it into chunks, creates embeddings, and stores the vectors with the chunk text and metadata. During question answering, it embeds the user's question, searches the vector index, selects relevant chunks, builds a prompt, calls the LLM, and returns the answer with sources.
+
+The ingestion process can be represented as:
+
+Source documents -> Text extraction -> Cleaning -> Chunking -> Embedding -> Vector index
+
+The question-answering process can be represented as:
+
+User question -> Query embedding -> Similarity search -> Retrieved chunks -> Prompt construction -> LLM response
+
+A retriever is the component that receives a query and returns relevant documents or chunks. A top-K setting controls how many results are returned. If K is too small, the system may miss important evidence. If K is too large, the prompt may contain irrelevant or repetitive passages. The best K depends on document structure, chunk size, and the task.
+
+A similarity threshold is a minimum score used to decide whether a retrieved result is relevant enough to use. For example, an application may skip the LLM call when the highest similarity score is below 0.60. This can reduce unnecessary model calls and prevent the application from answering when retrieval is weak. However, a threshold is not universal. Similarity scores vary across embedding models, distance metrics, and datasets, so the threshold should be calibrated with evaluation examples.
+
+If the search implementation returns distance rather than similarity, lower values may indicate better matches. A condition such as score >= 0.60 is correct only when larger scores mean greater similarity. Always inspect the search function and metric definition before applying a threshold.
+
+Prompt construction combines instructions, the user's question, and retrieved context. A grounded prompt should tell the model to answer using the supplied context, acknowledge when the context does not contain the answer, and avoid inventing missing facts. The application can also request source identifiers for each claim.
+
+RAG does not guarantee factual answers. The retriever may return irrelevant chunks, the source documents may be outdated, or the model may misinterpret the context. RAG quality depends on every stage: parsing, chunking, embeddings, indexing, retrieval, prompt construction, generation, and evaluation.
+
+A useful RAG system should distinguish between "the answer is not in the documents" and "retrieval failed to find the answer." These are different situations. A fallback response can say that the available documents do not contain enough relevant information, but the system should log low-confidence retrieval cases for later investigation.
+
+======================================================================
+10. RETRIEVAL STRATEGIES AND IMPROVEMENTS
+======================================================================
+
+Dense retrieval uses embeddings to find passages with similar semantic representations. It is useful when the query and document use different wording but express related meanings. Dense retrieval may struggle with exact identifiers, rare names, version numbers, and unusual technical strings.
+
+Sparse retrieval uses term-based methods such as TF-IDF or BM25. It can be effective when exact words matter. For example, a search for error code "AUTH-4037" may work better with lexical matching than with semantic similarity alone. BM25 ranks documents based on query-term matches while accounting for term frequency and document length.
+
+Hybrid retrieval combines dense and sparse search. It can capture both semantic similarity and exact keyword matches. Results from different retrievers can be combined using rank fusion or a weighted scoring method. Hybrid retrieval often helps in technical knowledge bases where users mix natural-language questions with product names, error codes, and API identifiers.
+
+Reranking is a second-stage process that reorders an initial set of retrieved candidates. A cross-encoder reranker evaluates a query and passage together and predicts their relevance. Reranking can improve precision, but it adds latency and compute cost. A common architecture retrieves perhaps twenty candidates, reranks them, and sends the best few to the LLM.
+
+Query rewriting transforms a user's question into a search-friendly form. It may expand acronyms, add relevant terms, or turn a conversational follow-up into a complete standalone query. Query rewriting can help when users ask "What about its limitations?" after discussing a specific technology. The rewritten query should preserve the user's intent rather than introduce assumptions.
+
+Multi-query retrieval generates several alternative search queries from one question. Each query searches the index, and the results are combined. This can improve recall when a question has multiple interpretations, but it can also add noise and cost. The combined results should be deduplicated and, when appropriate, reranked.
+
+Parent-child retrieval stores small child chunks for precise matching while retaining a larger parent section for context. The retriever searches child chunks but returns the parent section or a selected surrounding passage. This approach can help when small chunks improve matching but are too short to support a complete answer.
+
+Contextual compression reduces retrieved passages to the parts most relevant to the question. Compression may select sentences or produce a concise extraction. It should preserve the original source reference and avoid changing the meaning. If a compressed summary is used as evidence, the application should retain a way to inspect the original passage.
+
+======================================================================
+11. EVALUATING A RAG SYSTEM
+======================================================================
+
+RAG evaluation should measure retrieval and generation separately. A system can generate a fluent answer from poor context, or retrieve excellent passages that the LLM fails to use correctly. Separating these stages makes debugging easier.
+
+Precision@K measures how many of the top K retrieved results are relevant. If a search returns five chunks and three are relevant, Precision@5 is 3 divided by 5, or 0.60. High precision means the returned set contains relatively little irrelevant material.
+
+Recall@K measures how many of all known relevant results appear in the top K. If there are four relevant chunks in the dataset and the retriever returns two of them in its top results, Recall@K is 2 divided by 4, or 0.50. High recall means the retriever finds a large share of the relevant evidence.
+
+Mean Reciprocal Rank (MRR) evaluates the position of the first relevant result. If the first relevant result appears at rank 1, the reciprocal rank is 1. If it appears at rank 2, the reciprocal rank is 0.5. MRR averages this value over a set of queries. It is useful when the first relevant result is especially important.
+
+Normalized Discounted Cumulative Gain (NDCG) can evaluate rankings when relevance has multiple grades, such as highly relevant, partly relevant, and irrelevant. It rewards placing highly relevant results near the top. NDCG is useful when not all relevant passages are equally useful.
+
+Faithfulness measures whether the generated answer is supported by the retrieved context. Answer relevance measures whether the answer addresses the user's question. Context relevance measures whether the retrieved passages are useful for answering the question. These dimensions help distinguish retrieval problems from generation problems.
+
+A practical evaluation dataset should contain questions, expected answers, and the IDs of relevant source chunks or documents. Include direct questions, paraphrases, questions requiring multiple sections, ambiguous questions, and questions whose answers are deliberately absent. The absent-answer questions test whether the system can abstain rather than hallucinate.
+
+For each experiment, record the chunking method, chunk size, overlap, embedding model, top-K value, similarity threshold, retrieved chunk IDs, scores, latency, and evaluation metrics. Change one major variable at a time. Otherwise, it becomes difficult to identify which change caused an improvement or regression.
+
+Human review remains important. Automated metrics can help compare configurations, but a person should inspect representative successes and failures. Look for chunks cut in the middle of a definition, duplicated passages, missing headings, outdated sources, and answers that cite a passage that does not actually support the claim.
+
+======================================================================
+12. COMMON RAG FAILURE MODES
+======================================================================
+
+Poor text extraction can damage retrieval before chunking even begins. PDFs may contain headers, footers, broken reading order, tables, or scanned images. If extraction produces scrambled text, embeddings will represent that scrambled content. Inspect extracted text before building the index.
+
+Bad chunk boundaries can separate a heading from its content or split a procedure across several chunks. A chunk may contain a pronoun whose referent is in the previous chunk. Structure-aware splitting, overlap, and parent-child retrieval can reduce these problems.
+
+A mismatch between query and document embedding models can make similarity scores meaningless. The same embedding model, or a compatible model family with documented compatibility, should be used for both sides. If the model changes, re-index the documents.
+
+An unsuitable threshold can reject useful results or admit irrelevant ones. A threshold should be selected using a labeled evaluation set. Do not assume that 0.60 is a universal cutoff. Inspect score distributions for relevant and irrelevant examples.
+
+Too many retrieved chunks can overwhelm the prompt with repeated or contradictory information. Too few chunks can omit an important detail. Tune top-K using evaluation questions and consider deduplication or reranking.
+
+Outdated documents can produce outdated answers even when retrieval is technically successful. Store version and date metadata, filter by active versions, and define how old documents are replaced or archived.
+
+Prompt instructions cannot compensate for missing evidence. Telling a model to "be accurate" does not make an answer grounded if the retriever supplies no relevant source. The application should support abstention and communicate limitations clearly.
